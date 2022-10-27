@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 public class TestOffByN {
 
     @Test
-    public void TestOffByN() {
+    public void testEqualChars() {
         OffByN offbyn = new OffByN(5);
 
         assertTrue(offbyn.equalChars('a', 'f'));
@@ -14,7 +14,7 @@ public class TestOffByN {
         assertTrue(offbyn.equalChars('f', 'a'));
 
         assertFalse(offbyn.equalChars('f', 'h'));
-        
+
 
     }
 

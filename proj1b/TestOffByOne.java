@@ -9,7 +9,7 @@ public class TestOffByOne {
     // new ones, or the autograder might be upset.
     //static CharacterComparator offByOne = new OffByOne();
     @Test
-    public void TestEqualChars() {
+    public void testEqualChars() {
         OffByOne offByOne = new OffByOne();
         assertTrue(offByOne.equalChars('a', 'b'));
 
