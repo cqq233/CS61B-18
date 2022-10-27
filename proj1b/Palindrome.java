@@ -10,7 +10,7 @@ public class Palindrome {
         return dq;
     }
 
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({"EC_UNRELATED_TYPES", "DLS_DEAD_LOCAL_STORE"})
+    
     public boolean isPalindrome(String word) {
 
         if (word == null || word.length() <= 1) {
