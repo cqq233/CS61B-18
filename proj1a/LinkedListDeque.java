@@ -20,7 +20,7 @@ public class LinkedListDeque<T> {
     private int size;
     private Node sentinel;
 
-    LinkedListDeque() {
+    public LinkedListDeque() {
         sentinel = new Node(null, null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
@@ -67,14 +67,12 @@ public class LinkedListDeque<T> {
             return null;
         }
 
-        Node newNode = new Node(sentinel.next.item, null, null);
+        T ret = sentinel.next.item;
 
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         size -= 1;
-
-
-        return newNode.item;
+        return ret;
     }
 
     public T removeLast() {
@@ -82,12 +80,12 @@ public class LinkedListDeque<T> {
             return null;
         }
 
-        Node newNode = new Node(sentinel.prev.item, null, null);
+        T ret = sentinel.prev.item;
 
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
         size -= 1;
-        return newNode.item;
+        return ret;
 
     }
 
