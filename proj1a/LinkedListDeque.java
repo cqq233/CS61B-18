@@ -1,6 +1,6 @@
 public class LinkedListDeque<T> {
 
-    private class Node<T> {
+    private class Node {
         T item;
         Node next;
         Node prev;
@@ -28,7 +28,7 @@ public class LinkedListDeque<T> {
     }
 
     public void addFirst(T item) {
-        Node newNode = new Node<>(item, sentinel, sentinel.next);
+        Node newNode = new Node(item, sentinel, sentinel.next);
         sentinel.next.prev = newNode;
         sentinel.next = newNode;
         size += 1;
@@ -36,7 +36,7 @@ public class LinkedListDeque<T> {
     }
 
     public void addLast(T item) {
-        Node newNode = new Node<>(item, sentinel.next, sentinel);
+        Node newNode = new Node(item, sentinel.next, sentinel);
         sentinel.prev.next = newNode;
         sentinel.prev = newNode;
         size += 1;
@@ -67,14 +67,14 @@ public class LinkedListDeque<T> {
             return null;
         }
 
-        Node newNode = new Node<>(sentinel.next.item, null, null);
+        Node newNode = new Node(sentinel.next.item, null, null);
 
         sentinel.next.next.prev = sentinel;
         sentinel.next = sentinel.next.next;
         size -= 1;
 
 
-        return (T) newNode.item;
+        return newNode.item;
     }
 
     public T removeLast() {
@@ -82,12 +82,12 @@ public class LinkedListDeque<T> {
             return null;
         }
 
-        Node newNode = new Node<>(sentinel.prev.item, null, null);
+        Node newNode = new Node(sentinel.prev.item, null, null);
 
         sentinel.prev.prev.next = sentinel;
         sentinel.prev = sentinel.prev.prev;
         size -= 1;
-        return (T) newNode.item;
+        return newNode.item;
 
     }
 
@@ -95,17 +95,28 @@ public class LinkedListDeque<T> {
         if (index >= size) {
             return null;
         }
-        
+
         int count = 0;
         while (count < index) {
             sentinel = sentinel.next;
             count += 1;
         }
-        return (T) sentinel.next.item;
+        return sentinel.next.item;
     }
 
-
-    public static void main(String[] args) {
-
+    private T getRecursiveHelp(Node start, int index) {
+        if (index == 0) {
+            return (T) start.item;
+        } else {
+            return getRecursiveHelp(start.next, index - 1);
+        }
     }
+
+    public T getRecursive(int index) {
+        if (index >= size) {
+            return null;
+        }
+        return getRecursiveHelp(sentinel.next, index);
+    }
+
 }
